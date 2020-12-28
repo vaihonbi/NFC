@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Trang chủ</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      
+        <iframe width="1200" height="630" src="https://www.youtube.com/embed/4CCGI83vOVo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     
+    </div>
+    <div class="row">
+<!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#myModal">
+  Thêm thẻ NFC
+</button>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Thêm thẻ</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form action="{{route('/ThemNFC')}}" method="post" class="was-validated">
+      <div class="modal-body">
+        
+
+          <div class="form-group">
+            <label for="uname">Mã thẻ:</label>
+            <input type="text" class="form-control" id="uname" placeholder="Mã thẻ" name="cardCode" required>
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Vui lòng điền thông tin</div>
+          </div>
+
+       
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Thêm</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+{{--  //  --}}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Card Code</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(item in listNFC)
+        <tr>
+          <td>{{item.cardCode}}</td>
+          <td>
+            @if(item.profileId == null)
+            <button class="btn btn-success" type="button"  data-toggle="modal" data-target="#ModalProfile{{item.id}}">Thêm profile</button>
+            @else
+           <a href="{{route('/XoaProfile/:id',{id:item.id})}}"> <button class="btn btn-warning">Xóa profile</button></a>              
+            @endif
+            <div class="modal" id="ModalProfile{{item.id}}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                        
+                  <!-- Modal body -->
+                  <form action="{{route('/ThemProfile/:id',{id:item.id})}}" method="post" class="was-validated" id="{{item.id}}">
+                  <div class="modal-body">
+                    
+                      <div class="form-group">
+                        <label for="uname">Tên</label>
+                        <input type="text" class="form-control" id="uname" placeholder="Nhập tên..." name="name" required>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback">Vui lòng điền thông tin</div>
+
+                        <label for="">Đường dẫn facebook</label>
+                        <div class="input-group">
+                          
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">F</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="facebook" name="facebook">
+                        </div>
+
+                        <label for="">Đường dẫn Instagram</label>
+                        <div class="input-group">
+                          
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">I</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Instagram" name="instagram">
+                        </div>
+
+                        <label for="">Địa chỉ mail</label>
+                        <div class="input-group">
+                         
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Số điện thoại" name="phone">
+                        </div>
+                      </div>
+                   
+                  </div>
+            
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="document.getElementById('{{item.id}}').submit()">Thêm</button>
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+</body>
+</html>
