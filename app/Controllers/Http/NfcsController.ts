@@ -8,9 +8,11 @@ export default class NfcsController {
         return view.render('welcome', { listNFC });
     }
 
-    public async index({ view }: HttpContextContract) {
-
-        return view.render('profile');
+    public async index({ view, params }: HttpContextContract) {
+        const nfc = await NfcCard.query().select('*').where('card_code', params.id).first();
+        await nfc?.preload('profile');
+        return view.render('profile', { nfc });
+        // return nfc;
 
     }
 
@@ -39,11 +41,11 @@ export default class NfcsController {
         return response.redirect().back();
     }
 
-    public async XoaProfile({ view, params }: HttpContextContract) {
+    public async XoaProfile({ view, params, response }: HttpContextContract) {
         const nfc = await NfcCard.find(params.id);
 
         await nfc?.related('profile').dissociate();
 
-        return params.id;
+        return response.redirect('/');
     }
 }
