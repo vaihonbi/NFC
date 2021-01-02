@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Profile from 'App/Models/Profile'
 import NfcCard from 'App/Models/NfcCard'
+// import Application from '@ioc:Adonis/Core/Application';
 export default class NfcsController {
 
     public async welcome({ view }: HttpContextContract) {
@@ -28,10 +29,26 @@ export default class NfcsController {
     public async ThemProfile({ view, request, params, response }: HttpContextContract) {
         const data = new Profile();
 
+        // const thumb = request.input('thumb', {
+        //     extnames: ['webp', 'jpg', 'png']
+        // })
+        // if (thumb != null) {
+        //     const folder = 'uploads';
+        //     const fileName = new Date().getTime();
+        //     await thumb.move(Application.publicPath(folder), {
+        //         name: `${fileName}.${thumb.extname}`,
+        //         overwrite: true,
+        //     })
+        //     data.img = `${folder}/${fileName}.${thumb.extname}`;
+        // } else {
+        //     console.log("loix upload file")
+        // }
+
         data.name = request.input('name');
         data.urlFacebook = request.input('facebook');
         data.urlInstagram = request.input('instagram');
         data.phone = request.input('phone');
+        data.img = request.input('anh');
 
         const nfc = await NfcCard.find(params.id);
 

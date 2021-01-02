@@ -21,12 +21,13 @@
 import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => {
     Route.get('/', 'NfcsController.welcome');
-    Route.get('/:id', 'NfcsController.index');
+
     Route.post('/ThemNFC', 'NfcsController.ThemNFC');
     Route.post('/ThemProfile/:id', 'NfcsController.ThemProfile');
     Route.get('/XoaProfile/:id', 'NfcsController.XoaProfile');
 }).middleware('auth');
 
+Route.get('/:id', 'NfcsController.index');
 
 Route.group(() => {
     Route.on('login').render('login');

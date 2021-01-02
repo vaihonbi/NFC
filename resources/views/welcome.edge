@@ -87,7 +87,7 @@
                 <div class="modal-content">
                         
                   <!-- Modal body -->
-                  <form action="{{route('/ThemProfile/:id',{id:item.id})}}" method="post" class="was-validated" id="{{item.id}}">
+                  <form action="{{route('/ThemProfile/:id',{id:item.id})}}" method="post" class="was-validated" id="{{item.id}}" >
                   <div class="modal-body">
                     
                       <div class="form-group">
@@ -95,7 +95,9 @@
                         <input type="text" class="form-control" id="uname" placeholder="Nhập tên..." name="name" required>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback">Vui lòng điền thông tin</div>
-
+                        <label><span>Ảnh đại diện</span></label>
+                        {{--  <input type="file" name="thumb" accept="image/*" class="form-control-file">  --}}
+                        <input type="text"  alt="anh" name="anh"  class="form-control">
                         <label for="">Đường dẫn facebook</label>
                         <div class="input-group">
                           
