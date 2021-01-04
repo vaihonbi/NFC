@@ -63,8 +63,10 @@ export default class NfcsController {
 
     public async XoaProfile({ view, params, response }: HttpContextContract) {
         const nfc = await NfcCard.find(params.id);
-
-        await nfc?.related('profile').dissociate();
+        if (nfc != null) {
+            await Profile.query().where("id", nfc.profileId).delete();
+            await nfc.related('profile').dissociate();
+        }
 
         return response.redirect('/');
     }
