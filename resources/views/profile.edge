@@ -27,29 +27,77 @@
                 <div class="card">
                     <div class="card-header">
                         <img src="{{nfc.profile.img}}" class="img-thumbnail" alt="anhr" style="border-radius: 50%">
-                        <h5 style="text-align: center" class="mt-2">{{nfc.profile.name}}</h5>
+                        <h5 style="text-align: center" class="mt-2">{{nfc.profile.name ||""}}</h5>
+                        <h6 style="text-align: center">{{nfc.profile.text ||""}}</h6>
                     </div>
-                    <div class="card-body shadow" style="font-size: 24px;text-align: center">
+                    
+                    
+                </div>
+                
+                @if(nfc.profile.urlFacebook == null || nfc.profile.urlFacebook == "")
+                  
+                @else
+                <div class="card mt-2 shadow">
+                    <div class="card-body " style="font-size: 20px;text-align: center;line-height: 45px">
                         {{--  <i class="fa fa-facebook-square "></i>  --}}
                         <img src="https://www.flaticon.com/svg/static/icons/svg/174/174848.svg" alt="fb" width="50px" height="auto" style="float: left">
                         <a href="{{nfc.profile.urlFacebook ||'#'}}"  target="_blank" class="text-body" style="text-decoration: none">Facebook</a>
                     </div>
-                    
                 </div>
+                @endif
+
+               
+
+                @if(nfc.profile.urlInstagram == null ||nfc.profile.urlInstagram == "")
+                  
+                @else
                 <div class="card mt-2 shadow">
-                    <div class="card-body" style="font-size: 24px;text-align: center">
+                    <div class="card-body" style="font-size: 20px;text-align: center;line-height: 45px">
                         {{--  <i class="fa fa-instagram "></i>  --}}
                         <img src="https://www.flaticon.com/svg/static/icons/svg/2111/2111463.svg" alt="ins"  width="50px" height="auto" style="float: left">
                        <a href="{{nfc.profile.urlInstagram ||'#'}}" target="_blank" class="text-body" style="text-decoration: none">Instagram</a> 
                     </div>
                 </div>
+                @endif
+               
+                @if(nfc.profile.phone == null ||nfc.profile.phone == "")
+                  
+                @else
                 <div class="card mt-2 shadow">
-                    <div class="card-body"  style="font-size: 24px;text-align: center">
+                    <div class="card-body"  style="font-size: 20px;text-align: center;line-height: 45px">
                         {{--  <i class="fa fa-phone "></i>  --}}
                         <img src="https://www.flaticon.com/svg/static/icons/svg/124/124034.svg" alt="phone"  width="50px" height="auto" style="border-radius: 10px;float: left">
                        <a href="tel:+84{{nfc.profile.phone}}" target="_blank" class="text-body" style="text-decoration: none">Số điện thoại</a>
                     </div>
                 </div>
+                @endif
+
+                @if(nfc.profile.email == null ||nfc.profile.email == "")
+                  
+                @else
+                <div class="card mt-2 shadow">
+                    <div class="card-body"  style="font-size: 20px;text-align: center;line-height: 45px">
+                        {{--  <i class="fa fa-phone "></i>  --}}
+                        <img src="https://www.flaticon.com/svg/static/icons/svg/888/888853.svg" alt="phone"  width="50px" height="auto" style="border-radius: 10px;float: left">
+                       <a href="mailto:{{nfc.profile.email}}" target="_blank" class="text-body" style="text-decoration: none">{{nfc.profile.email}}</a>
+                        
+                    </div>
+                </div>
+                @endif
+
+                @if(nfc.profile.address == null ||nfc.profile.address == "")
+                  
+                @else
+                <div class="card mt-2 shadow">
+                    <div class="card-body"  style="font-size: 20px;text-align: center;line-height: 45px">
+                        {{--  <i class="fa fa-phone "></i>  --}}
+                        <img src="https://www.flaticon.com/svg/static/icons/svg/3112/3112952.svg" alt="phone"  width="50px" height="auto" style="border-radius: 10px;float: left">
+                       
+                       <p>{{nfc.profile.address}}</p>
+                    </div>
+                </div>
+                @endif
+                
             </div>
             <div class="col-lg-4"></div>
         </div>

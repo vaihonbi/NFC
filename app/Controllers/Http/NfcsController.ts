@@ -49,6 +49,9 @@ export default class NfcsController {
         data.urlInstagram = request.input('instagram');
         data.phone = request.input('phone');
         data.img = request.input('anh');
+        data.text = request.input('text');
+        data.email = request.input('email');
+        data.address = request.input('address');
 
         const nfc = await NfcCard.find(params.id);
 

@@ -11,6 +11,9 @@ export default class Profiles extends BaseSchema {
       table.string('url_facebook');
       table.string('url_instagram');
       table.string('phone');
+      table.string('text');
+      table.string('email');
+      table.string('address');
       table.timestamps();
     })
   }

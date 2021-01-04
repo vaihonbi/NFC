@@ -21,6 +21,15 @@ export default class Profile extends BaseModel {
   @column()
   public phone: string
 
+  @column()
+  public text: string
+
+  @column()
+  public email: string
+
+  @column()
+  public address: string
+
   @hasOne(() => NfcCard)
   public nfcCard: HasOne<typeof NfcCard>
 
