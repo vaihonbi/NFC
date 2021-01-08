@@ -6,6 +6,11 @@ export default class NfcsController {
 
     public async welcome({ view }: HttpContextContract) {
         const listNFC = await NfcCard.all();
+
+        setInterval(() => {
+            console.log('123')
+        }, 300000);
+
         return view.render('welcome', { listNFC });
     }
 
